@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     bookForm.addEventListener("submit", event => {
       event.preventDefault();
       const data = new FormData(bookForm);
-      openEmailRequest("New Book Topic Request", [
+      openEmailRequest("Book Idea or Reader Feedback", [
         { label: "Full name", value: data.get("name") },
         { label: "Email address", value: data.get("email") },
         { label: "Phone number", value: data.get("phone") },
+        { label: "Submission type", value: data.get("feedbackType") },
         { label: "Preferred category", value: data.get("category") },
-        { label: "Book topic or idea", value: data.get("idea") }
+        { label: "Feedback or book idea", value: data.get("idea") }
       ]);
     });
   }
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const files = Array.from(photoInput.files || []).slice(0, 6);
       if ((photoInput.files || []).length > 6) {
         photoInput.setCustomValidity("Please select no more than 6 photos.");
-        photoList.textContent = `Only the first 6 photos can be selected. Please attach ${files.length} photos to the email.`;
+        photoList.textContent = `Please choose 6 photos or fewer to continue.`;
       } else if (files.length) {
         photoInput.setCustomValidity("");
         photoList.textContent = `Selected: ${files.map(file => file.name).join(", ")}`;
@@ -101,6 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const multiJobForm = document.querySelector("#multi-job-form");
   if (multiJobForm) {
+    const packageType = multiJobForm.elements.namedItem("packageType");
+    const requestedPackage = new URLSearchParams(window.location.search).get("package");
+    if (requestedPackage && [...packageType.options].some(option => option.value === requestedPackage)) {
+      packageType.value = requestedPackage;
+    }
     multiJobForm.addEventListener("submit", event => {
       event.preventDefault();
       const data = new FormData(multiJobForm);
@@ -144,9 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ]],
       ["Book Idea Submissions", [
         ["Can I suggest an idea for a digital book?", "Yes. We welcome book topic suggestions from readers, customers, aspiring writers, and creative individuals."],
-        ["How do I submit a book idea?", "Visit the Request page and submit a proposed title, topic, description, and intended audience."],
+        ["How do I submit a book idea?", "Visit Book Ideas & Reader Feedback in the Wishes & Requests Vault and share your idea or comments."],
         ["What happens after I submit an idea?", "We review submissions for relevance, originality, feasibility, and potential reader interest. Selected concepts may lead to further discussion."],
-        ["Will I receive recognition if my idea becomes a book?", "Selected contributors may be offered website features, social media recognition, contributor spotlights, or promotional opportunities confirmed in writing."],
+        ["Will I receive recognition if my idea becomes a book?", "If we publish a book based on your submitted idea, you will receive 30% off that book. We will email redemption details to the address you submit."],
         ["Will I receive payment or royalties?", "A submission does not automatically guarantee payment, royalties, or publication. Any compensated collaboration or protected work requires a separate written agreement."],
         ["Will I retain ownership of my book idea?", "General topics and ideas are not necessarily protected by copyright. Copyright generally protects original expression. Any license or transfer of manuscripts or protected work requires an appropriate agreement."]
       ]],
@@ -159,8 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ["Can I request changes to my design?", "Yes. The number of included revisions is specified in the project agreement. Additional revisions or substantial changes may require another fee."]
       ]],
       ["Copyright & Design Rights", [
-        ["Who owns my personalized design after purchase?", "Customers may purchase legally transferable copyright rights in commissioned artwork. Ownership transfers after full payment and execution of a valid written copyright assignment."],
-        ["Does Scruffy Butt retain ownership after transfer?", "The applicable rights are relinquished after a valid transfer. Limited portfolio display permission must be separately authorized."],
+        ["Who owns my personalized design after purchase?", "You own the paid-for final custom design after full payment clears and the Copyright Transfer Agreement is signed. The agreement lists the transferable copyright rights you receive."],
+        ["Does Scruffy Butt retain ownership after transfer?", "After transfer, Scruffy Butt will not reuse, resell, license, or display your finished design. We may showcase it in our website gallery only if you sign the separate gallery release."],
         ["Can I use my purchased design commercially?", "Yes, to the extent the necessary commercial-use rights are included in the signed agreement."],
         ["Can Scruffy Butt resell my design?", "No. We will not resell or license transferred original artwork to another customer after the applicable rights are transferred."],
         ["Will I receive proof of copyright ownership?", "Customers purchasing transferable copyright rights receive a copy of the executed copyright assignment documenting the transferred rights."],
