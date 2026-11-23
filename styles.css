@@ -826,7 +826,7 @@ img { max-width: 100%; display: block; }
 }
 
 .pricing-card li::before {
-  content: "✓";
+  content: "â";
   position: absolute;
   left: 0;
   color: var(--gold-soft);
@@ -1779,7 +1779,7 @@ img { max-width: 100%; display: block; }
 }
 
 .faq-item[open] summary::after {
-  content: "−";
+  content: "â";
 }
 
 .faq-answer {
@@ -2312,7 +2312,7 @@ img { max-width: 100%; display: block; }
 }
 
 .panel-list li::before {
-  content: "★";
+  content: "â";
   color: var(--gold-soft);
   font-size: 1.2rem;
 }
@@ -2739,3 +2739,20 @@ img { max-width: 100%; display: block; }
 .agreement-forms details { border: 1px solid #b08b47; border-radius: .55rem; padding: .65rem .85rem; margin-block: .65rem; overflow-wrap: anywhere; }
 .agreement-forms summary { cursor: pointer; padding-block: .4rem; color: inherit; font-weight: 700; }
 .agreement-forms details, #design-agreement-forms { scroll-margin-top: 8rem; }
+
+/* Bookstore covers retain their full artwork at every screen size. */
+.book-cover-link img,
+.book-sales-cover {
+  object-fit: contain;
+  object-position: center;
+}
+
+.book-sales-layout form label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.book-sales-layout input[name="quantity"] {
+  width: 5rem;
+  margin-inline-start: 8px;
+}
