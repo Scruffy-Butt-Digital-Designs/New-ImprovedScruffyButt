@@ -6,6 +6,19 @@
   <title>AI Tools for Business Automation | Scruffy Butt Digital Designs</title>
   <meta name="description" content="Explore AI tools and automation strategies for modern business workflows.">
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    .book-sales-cover {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 38rem;
+      object-fit: contain;
+      object-position: center top;
+    }
+    @media (max-width: 640px) {
+      .book-sales-cover { max-height: 28rem; }
+    }
+  </style>
 </head>
 <body class="book-sales-page">
   <main class="container book-sales">
@@ -20,10 +33,14 @@
         <p class="book-sales-category">AI &amp; Automation · Digital book</p>
         <h1>AI Tools for Business Automation</h1>
         <h2>About the book</h2>
-        <p>Explore AI tools and automation strategies for modern business workflows.</p>
+        <p>Explore AI tools and automation strategies for modern business workflows. Start with a repetitive task, map the steps it takes today, and consider where AI could make that workflow easier to manage.</p>
         <p class="book-sales-price">$29.00 USD</p>
         <form action="../index.html#book-cart-heading" method="get">
           <input type="hidden" name="add-book" value="1">
+          <label>
+            Quantity
+            <input type="number" name="quantity" value="1" min="1" max="20" step="1" required>
+          </label>
           <button class="btn btn-primary" type="submit">Add to Cart</button>
         </form>
       </div>
